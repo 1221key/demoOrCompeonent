@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="test1" style="height: 100px;width: 100px;background:pink;position:absolute;top:0;left:0;z-index: 2">元素一</div>
+<div id="test2" style="height: 400px;width: 400px;background:orange;position:absolute;top:150px;left:150px;">元素二</div>
+<script>
+function addEvent(target,type,handler){
+    if(target.addEventListener){
+        target.addEventListener(type,handler,false);
+    }else{
+        target.attachEvent('on'+type,function(event){
+            return handler.call(target,event);
+        });
+    }
+}
+function getCSS(obj,style){
+    if(window.getComputedStyle){
+        return getComputedStyle(obj)[style];
+    }
+    return obj.currentStyle[style];
+}    
+function bump(obj,objOther,ele){
+    //bump.objBGColor = (bump.objBGColor === undefined) ? getCSS(obj,'backgroundColor') : bump.objBGColor;
+    bump.objOtherBGColor = (bump.objOtherBGColor === undefined) ? getCSS(objOther,'backgroundColor') : bump.objOtherBGColor;    
+    /***被碰元素***/
+    //被碰元素左侧距离可视区域左侧的距离
+    var L0 = obj.offsetLeft;
+    //被碰元素上侧距离可视区域上侧的距离
+    var T0 = obj.offsetTop;
+    //被碰元素右侧距离可视区域右侧的距离
+    var R0 = obj.offsetLeft + obj.offsetWidth;
+    //被碰元素下侧距离可视区域下侧的距离
+    var B0 = obj.offsetTop + obj.offsetHeight;
+    /**侵入元素**/
+    var L = objOther.offsetLeft;
+    var T = objOther.offsetTop;
+    var R = objOther.offsetLeft + objOther.offsetWidth;
+    var B = objOther.offsetTop + objOther.offsetHeight;    
+
+    /*******碰撞检测*******/
+    //上侧区域if(B < T0)
+    //左侧区域if(R < L0)
+    //右侧区域if(L > R0)
+    //下侧区域if(T > B0)
+    
+    //碰撞区域
+    if(B >= T0 -10 && R >= L0-10 && L <= R0+10 && T <= B0+10){
+       /*obj.style.backgroundColor = */objOther.style.backgroundColor ='red';
+       //对目标盒子四条边磁性吸附
+        if(B >= T0-10 && B<= T0+10){
+        	ele.style.top = T0 - objOther.offsetHeight + 'px';
+        	console.log("B")
+        }else if(B >= B0-10 && B<= B0+10){//从上往下移动，底边与底边吸附
+        	ele.style.top = B0 - objOther.offsetHeight + 'px';
+        	console.log("B2")
+        }
+         if(R >= L0-10&&R<=L0+10){
+			ele.style.left = L0 - objOther.offsetWidth + 'px';
+			console.log("R")
+        }else if(R >= R0-10&&R<=R0+10){//从左边向右边移动，右边与右边吸附
+			ele.style.left = R0 - objOther.offsetWidth + 'px';
+			console.log("R2")
+        }
+         if( L <= R0+10 && L>=R0-10){
+        	ele.style.left = R0 + 'px';//
+        	console.log("L")
+        }else if( L >= L0-10 && L<L0+10){//从右边向左边移动，左边与左边吸附
+        	ele.style.left = L0 + 'px';//
+        	console.log("L2")
+        }
+         if(T <= B0+10 &&T>=B0-10){
+			ele.style.top = B0 + 'px';//
+			console.log("T")
+        }else if(T >= T0-10 &&T<T0+10){
+        	ele.style.top = T0 + 'px';//
+			console.log("T2")
+        }
+        
+        
+    }else{
+        //obj.style.backgroundColor = bump.objBGColor;
+        objOther.style.backgroundColor = bump.objOtherBGColor;
+
+    }
+}
+
+function drag(ele){
+    var x0,y0,x1,y1,isMoving;
+    var L0,R0,T0,B0,EH,EW;
+
+    var mousedownHandler = function(e){
+        //获取元素距离定位父级的x轴及y轴距离
+        x0 = this.offsetLeft;
+        y0 = this.offsetTop;
+        //获取此时鼠标距离视口左上角的x轴及y轴距离
+        x1 = e.clientX;
+        y1 = e.clientY;
+        //按下鼠标时，表示正在运动
+        isMoving = true;
+        //鼠标按下时，获得此时的页面区域
+        L0 = 0;
+        R0 = document.documentElement.clientWidth;
+        T0 = 0;
+        B0 = document.documentElement.clientHeight;
+        //鼠标按下时，获得此时的元素宽高
+        EH = ele.offsetHeight;
+        EW = ele.offsetWidth;
+    }
+    var mousemoveHandler = function(e){
+        //如果没有触发down事件，而直接触发move事件，则函数直接返回
+        if(!isMoving){
+            return;
+        }
+        e = e || event;
+        //获取此时鼠标距离视口左上角的x轴及y轴距离
+        var x2 = e.clientX;
+        var y2 = e.clientY;   
+        //计算此时元素应该距离视口左上角的x轴及y轴距离
+        var X = x0 + (x2 - x1);
+        var Y = y0 + (y2 - y1);        
+        /******范围限定*******/
+        //获取鼠标移动时元素四边的瞬时值
+        var L = X;
+        var R = X + EW;
+        var T = Y;
+        var B = Y + EH;
+        //在将X和Y赋值给left和top之前，进行范围限定。只有在范围内时，才进行相应的移动
+        //如果脱离左侧范围，则left置L0
+        if(L < L0+10){X = L0;}
+        //如果脱离右侧范围，则left置为R0
+        if(R > R0-10){X = R0 - EW;}
+        //如果脱离上侧范围，则top置T0
+        if(T < T0+10){Y = T0;}
+        //如果脱离下侧范围，则top置为B0
+        if(B > B0-10){Y = B0 - EH;}
+
+        //将X和Y的值赋给left和top，使元素移动到相应位置
+        ele.style.left = X + 'px';
+        ele.style.top = Y + 'px';
+
+        bump(test2,test1,ele);
+    }
+    var mouseupHandler = function(e){
+        //鼠标抬起时，表示停止运动
+        isMoving = false;
+    }
+    var preventDefaultHandler = function(e){
+        e = e || event;
+        if(e.preventDefault){
+            e.preventDefault();
+        }else{
+            e.returnValue = false;
+        }
+}
+addEvent(ele,'mousedown',mousedownHandler);
+addEvent(ele,'mousedown',preventDefaultHandler);
+addEvent(document,'mousemove',mousemoveHandler)
+addEvent(document,'mouseup',mouseupHandler)
+
+};
+
+drag(test1);
+//drag(test2);
+</script>
+</body>
+</html>
