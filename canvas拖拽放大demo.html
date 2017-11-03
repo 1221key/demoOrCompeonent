@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var scale = 1;
+        var imgX = 0;
+        var imgY = 0;
+        var lastCenter={imgX:0,imgY:0}
+        window.CanvasSketch = {
+            vesion: "1.0.0"
+        }; 
+
+        //图形的范围
+        CanvasSketch.Bounds = function(x1, y1, x2, y2) {
+            this.leftBottom = new CanvasSketch.Position(x1, y1);
+            this.rigthTop = new CanvasSketch.Position(x2, y2);
+            this.leftTop = new CanvasSketch.Position(x1, y2);
+            this.rightBottom = new CanvasSketch.Position(x2, y1);
+            this.left = x1;
+            this.right = x2;
+            this.bottom = y1;
+            this.top = y2;
+        }
+
+        CanvasSketch.Bounds.prototype.getCenter = function() {
+            var w = this.right - this.left;
+            var h = this.top - this.bottom;
+            return new CanvasSketch.Position(this.left + w / 2, this.bottom + h / 2);
+        }
+
+        //位置信息类
+        CanvasSketch.Position = function(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        //大小类
+        CanvasSketch.Size = function(w, h) {
+            this.w = w;
+            this.h = h;
+        }
+
+        //保存事件的this。
+        CanvasSketch.bindAsEventListener = function(func, object) {
+            return function(event) {
+                return func.call(object, event || window.event);
+            };
+        }
+
+        //阻止事件冒泡
+        CanvasSketch.stopEventBubble = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        function Scale(layer) {
+            this.layer = layer;
+            this.canvas = layer.canvas;
+            this.active();
+        }
+        Scale.prototype.wheelChange = function(e) {
+            var layer = this.layer;
+            var wheelDelta = e.wheelDelta ? e.wheelDelta : (e.deltaY * (-40));
+            var delta = (wheelDelta / 120);
+            var deltalX = layer.size.w / 2 - e.pageX;
+            var deltalY = e.pageY - layer.size.h / 2;
+            var px = {
+                x: e.pageX,
+                y: e.pageY
+            };
+
+            var pos = windowToCanvas(e.pageX, e.pageY);
+
+            if (wheelDelta > 0) {
+                if (scale < 16) {
+                    scale *= 2;
+                    imgX = imgX * 2 - pos.x;
+                    imgY = imgY * 2 - pos.y;
+                }
+            } else {
+                if (scale > 1 / 16) {
+                    scale /= 2;
+                    imgX = imgX * 0.5 + pos.x * 0.5;
+                    imgY = imgY * 0.5 + pos.y * 0.5;
+                }
+            }
+
+            function windowToCanvas(x, y) {
+                var canvas = document.getElementById("bargraphCanvas");
+                var box = canvas.getBoundingClientRect();
+                return {
+                    x: x - box.left, 
+                    y: y - box.top 
+                };
+            }
+            layer.zoom = scale;
+            layer.center.x = imgX;
+            layer.center.y = imgY;
+            drawImage();
+            console.log(layer.zoom,imgX,imgY)
+            function drawImage() {
+                layer.canvas.getContext("2d").clearRect(0, 0, layer.size.w, layer.size.h);
+                layer.canvas.getContext("2d").drawImage(
+                    img, //规定要使用的图像、画布或视频。
+                    0, 0, //开始剪切的 x 坐标位置。
+                    img.width, img.height, //被剪切图像的高度。
+                    imgX, imgY, //在画布上放置图像的 x 、y坐标位置。
+                    img.width * layer.zoom, img.height * layer.zoom //要使用的图像的宽度、高度
+                );
+            }
+            CanvasSketch.stopEventBubble(e);
+        }
+
+        Scale.prototype.Events = [
+            ["mousewheel", Scale.prototype.wheelChange],
+            ["wheel", Scale.prototype.wheelChange]
+        ];
+
+        Scale.prototype.active = function() {
+            for (var i = 0, len = this.Events.length; i < len; i++) {
+                var type = this.Events[i][0];
+                var listener = this.Events[i][1];
+                listener = CanvasSketch.bindAsEventListener(listener, this);
+                this.canvas.addEventListener(type, listener, true);
+            }
+        }
+
+        //CLASS:控制平移。
+        function Pan(layer) {
+            this.layer = layer;
+            this.canvas = layer.canvas;
+            this.active();
+            this.dragging = false;
+        }
+
+        Pan.prototype.startPan = function(e) {
+            this.dragging = true;
+            ////在一开始保存点击的位置。
+            this.lastX = e.pageX;
+            this.lastY = e.pageY;
+            //设置鼠标样式。
+            this.canvas.style.cursor = "move";
+            CanvasSketch.stopEventBubble(e);
+        }
+
+        Pan.prototype.pan = function(e) {
+            if (this.dragging) {
+                this.canvas.style.cursor = "pointer";
+                var layer = this.layer;
+                //计算改变的像素值
+                var dx = e.pageX - this.lastX;
+                var dy = e.pageY - this.lastY;
+                this.lastX = e.pageX;
+                this.lastY = e.pageY;
+                layer.center.x += dx;
+                layer.center.y += dy;
+                layer.moveTo(layer.zoom, layer.center,true);
+            }
+            CanvasSketch.stopEventBubble(e);
+        }
+
+        Pan.prototype.endPan = function(e) {
+            this.canvas.style.cursor = "default";
+            this.dragging = false;
+            CanvasSketch.stopEventBubble(e);
+        }
+
+        Pan.prototype.Events = [
+            ["mousedown", Pan.prototype.startPan],
+            ["mousemove", Pan.prototype.pan],
+            ["mouseup", Pan.prototype.endPan]
+        ];
+
+
+        Pan.prototype.active = function() {
+                this.canvas.addEventListener(this.Events[0][0], this.Events[0][1].bind(this), true);
+                document.addEventListener(this.Events[1][0], this.Events[1][1].bind(this), true);
+                document.addEventListener(this.Events[2][0], this.Events[2][1].bind(this), true);
+            } 
+            //CLASS:图层类
+        function Layer(canvas) {
+            var size = new CanvasSketch.Size(parseInt(canvas.width), parseInt(canvas.height));
+            this.size = size;
+            this.canvas = canvas;
+            this.scale = new Scale(this);
+            this.pan = new Pan(this);
+            this.maxBounds = new CanvasSketch.Bounds(-size.w / 2, -size.h / 2, size.w / 2, size.h / 2);
+            this.bounds = new CanvasSketch.Bounds(-size.w / 2, -size.h / 2, size.w / 2, size.h / 2);
+            this.center = this.bounds.getCenter();
+            this.zoom = scale;
+            this.getRes();
+            //创建一个渲染器。
+            this.renderer = new Canvas(this);
+        }
+
+        //这个res代表当前zoom下每像素代表的单位长度。 
+        //比如当前缩放比率为 200% 则通过计算得到 res为0.5，说明当前zoom下每个像素只表示0.5个单位长度。
+        Layer.prototype.getRes = function() {
+            this.res = 1 / (this.zoom / 1);
+            return this.res;
+        }
+
+        Layer.prototype.getResFromZoom = function(zoom) {
+            return res = 1 / (zoom / 1);
+        }
+
+
+        Layer.prototype.moveTo = function(zoom, center,pan) {
+            if (zoom <= 0) {
+                return;
+            }
+            console.log(this.zoom)
+            this.zoom = zoom;
+            this.center = center;
+            var res = this.getRes();
+            var width = this.size.w * res;
+            var height = this.size.h * res;
+            //获取新的视图范围。
+            console.log(res,zoom)
+            var bounds = new CanvasSketch.Bounds(center.x - width / 2, center.y - height / 2, center.x + width / 2, center.y + height / 2);
+            this.bounds = bounds;
+            console.log("bounds", bounds)
+            layer.canvas.getContext("2d").clearRect(0, 0, layer.size.w, layer.size.h);
+
+            layer.canvas.getContext("2d").drawImage(
+                img, //规定要使用的图像、画布或视频。
+                0, 0, //开始剪切的 x 坐标位置。
+                img.width, img.height, //被剪切图像的高度。
+                center.x, center.y,
+                img.width * zoom, img.height * zoom
+            );
+        }
+
+        //通过屏幕坐标设定center。
+        Layer.prototype.getPositionFromPx = function(px) {
+                return new CanvasSketch.Position((px.x + this.bounds.left / this.res) * this.res,
+                    (this.bounds.top / this.res - px.y) * this.res);
+            }
+            //ClASS:渲染器类型
+        function Canvas(layer) {
+            this.canvas = document.getElementById("bargraphCanvas");
+            this.context = this.canvas.getContext("2d");
+            this.layer = layer;
+        }
+    </script>
+
+</head>
+
+<body>
+    <canvas id="bargraphCanvas" width="500" height="600" style="border:1px solid red;"></canvas>
+    <!-- <div style="width:400px; height:300px; border:1px solid black" id="renderer2">&nbsp;</div> -->
+    <button type="button" onclick="addPoint()">添加点</button>
+    <button type="button" onclick="addCircle()">添加圆</button>
+    <button type="button" onclick="zoomin()">放大</button>
+    <button type="button" onclick="zoomout()">缩小</button>
+    <br />
+</body>
+<script type="text/javascript">
+    var layer;
+    window.addEventListener("load", init2, true);
+
+    function init2() {
+        function loadImg() {
+            img = new Image();
+            img.onload = function() {
+                imgIsLoaded = true;
+                //drawImage();
+                //context.clearRect(0, 0, 2 * canvas.width, 2 * canvas.height);
+                layer.canvas.getContext("2d").drawImage(
+                    img, //规定要使用的图像、画布或视频。
+                    0, 0, //开始剪切的 x 坐标位置。
+                    //img.width, img.height, //被剪切图像的高度。
+                    //imgX, imgY, //在画布上放置图像的 x 、y坐标位置。
+                    //img.width * imgScale, img.height * imgScale //要使用的图像的宽度、高度
+                );
+            }
+            img.src = '20160816144833858.jpg';
+
+            var div = document.getElementById("bargraphCanvas");
+            // div.innerHTML = "";
+            layer = new Layer(div);
+        }
+        loadImg()
+
+        function zoomin() {
+            var zoom = layer.zoom + 20;
+            layer.moveTo(zoom, layer.center);
+        }
+
+        function zoomout() {
+            var zoom = layer.zoom - 20;
+            layer.moveTo(zoom, layer.center);
+        }
+    }
+</script>
+
+</html>
