@@ -160,7 +160,7 @@
                 CanvasSketch.imgX = layer.center.x; //保存center,作为过渡到scale的初始值
                 CanvasSketch.imgY = layer.center.y;
                 console.log(CanvasSketch.imgX, CanvasSketch.imgY)
-                layer.moveTo(layer.zoom, layer.center, true);
+                layer.redraw(layer.zoom, layer.center);
             }
             CanvasSketch.stopEventBubble(e);
         }
@@ -209,7 +209,7 @@
         Layer.prototype.getResFromZoom = function(zoom) {
             return res = 1 / zoom;
         }
-        Layer.prototype.moveTo = function(zoom, center) {
+        Layer.prototype.redraw = function(zoom, center) {
             if (zoom <= 0) {
                 return;
             }
@@ -278,23 +278,23 @@
         loadImg()
 
         function reset() {
-            CanvasSketch.imgX = 0
-            CanvasSketch.imgY = 0
-            CanvasSketch.scale = 1
+            CanvasSketch.imgX = 0;
+            CanvasSketch.imgY = 0;
+            CanvasSketch.scale = 1;
             layer.center = {
                 x: 0,
                 y: 0
-            }
-            layer.moveTo(1, layer.center, true);
+            };
+            layer.redraw(1, layer.center);
         }
         document.getElementById("aaa").onclick = function() {
             reset();
         }
 
-        function zoomout() {
-            var zoom = layer.zoom - 20;
-            layer.moveTo(zoom, layer.center);
-        }
+        // function zoomout() {
+        //     var zoom = layer.zoom - 20;
+        //     layer.redraw(zoom, layer.center);
+        // }
     }
 </script>
 
