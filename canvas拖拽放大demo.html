@@ -252,7 +252,7 @@
     <!-- <div style="width:400px; height:300px; border:1px solid black" id="renderer2">&nbsp;</div> -->
     <!--  <button type="button" onclick="addPoint()">添加点</button>
     <button type="button" onclick="addCircle()">添加圆</button> -->
-    <!-- <button type="button" onclick="zoomin()">放大</button> -->
+    <button id="bbb" type="button">涂鸦</button>
     <button id="aaa" type="button">回到适合大小</button>
     <br />
 </body>
@@ -264,7 +264,7 @@
         function loadImg() {
             img = new Image();
             img.onload = function() {
-                imgIsLoaded = true;
+                //imgIsLoaded = true;
                 layer.canvas.getContext("2d").drawImage(
                     img, //规定要使用的图像、画布或视频。
                     0, 0 //开始剪切的 x 坐标位置。
@@ -290,11 +290,13 @@
         document.getElementById("aaa").onclick = function() {
             reset();
         }
-
-        // function zoomout() {
-        //     var zoom = layer.zoom - 20;
-        //     layer.redraw(zoom, layer.center);
-        // }
+        document.getElementById("bbb").onclick = function() {
+                reset();
+            }
+            // function zoomout() {
+            //     var zoom = layer.zoom - 20;
+            //     layer.redraw(zoom, layer.center);
+            // }
     }
 </script>
 
