@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        p {
+            margin: 23px;
+            text-indent: 2em;
+            line-height: 36px;
+            font-size: 18px;
+        }
+        
+        h3,
+        h4 {
+            font-size: 26px;
+        }
+        
+        h3,
+        h4 {
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+        
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+        
+        sub {
+            bottom: -0.25em;
+        }
+        
+        sup {
+            top: -0.5em;
+        }
+    </style>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <div class="wrap" id="format-pager-wrap" style="height:900px;width:850px;background:pink;overflow:hidden;">
+        <!-- format-pager控制下面的不可见位置 height可变 -->
+        <div class="format-page" style="overflow:hidden;width:100%;height:900px;" data-page-index=0>
+            <!-- pager-inner控制上面的不可见位置 margin-top可变 -->
+            <!-- <div class="pager-inner page-inner-hide" style="margin-top:0px;width:100%;">
+
+            </div> -->
+            <div class="page-inner" style="margin-top:0px;width:100%;">
+
+            </div>
+            <script>
+            </script>
+        </div>
+    </div>
+
+    <script>
+        function htmlParse(str) {
+            return str ? str.replace(/&((g|l|quo)t|amp|#39|nbsp);/g, function(m) {
+                return {
+                    '&lt;': '<',
+                    '&amp;': '&',
+                    '&quot;': '"',
+                    '&gt;': '>',
+                    '&#39;': "'",
+                    '&nbsp;': ' '
+                }[m]
+            }) : '';
+        }
+        var cc = [`<h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `<p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>
+;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究<sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup>
+,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换<sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup>
+,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等<sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup>
+对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行<sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup>
+。</p>`, `<p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`, `<p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup>
+。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。</p>`, `<p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `<p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39" data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34" data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom" data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom" data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom" data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span></p>`,
+            `<p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34" data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom" data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span><span class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom" data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span><span class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom" data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom" data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span></p>`, `<h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `<p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>
+;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究<sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup>
+,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换<sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup>
+,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等<sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup>
+对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行<sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup>
+。</p>`, `<p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`, `<p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup>
+。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。</p>`, `<p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `<p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39" data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34" data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom" data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom" data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom" data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span></p>`,
+            `<p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34" data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom" data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span><span class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom" data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span><span class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom" data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom" data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span></p>`, `<h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `<p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>
+;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究<sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup>
+,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换<sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup>
+,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等<sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup>
+对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行<sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup>
+。</p>`, `<p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`, `<p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup>
+。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。</p>`, `<p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `<p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39" data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34" data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom" data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom" data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom" data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span></p>`,
+            `<p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34" data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom" data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span><span class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom" data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span><span class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom" data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom" data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span></p>`, `<h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `<p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>
+;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究<sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup>
+,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换<sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup>
+,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等<sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup>
+对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行<sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup>
+。</p>`, `<p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`, `<p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup>
+。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。</p>`, `<p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `<p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39" data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34" data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom" data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom" data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom" data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span></p>`,
+            `<p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34" data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom" data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span><span class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom" data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span><span class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom" data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom" data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span></p>`
+        ]
+
+        var arr = []; //插入内容的起始位置;插入的内容的长度;margin-top;height; （内容高度范围，800px）段落起始索引
+        var m = 0;
+
+        var i = 0;
+        for (var m = 0; m < 30; m++) {
+
+            arr[m] = {};
+            arr[m].start = i;
+            var marginTop = Math.abs(parseInt($(".page-inner").css("margin-top"))) || 0;
+            for (; i < cc.length; i++) {
+                $(".page-inner").append($(cc[i]));
+
+                if ($(".page-inner").height() - marginTop + parseInt($(".page-inner").children(":first-child").css("margin-top")) > 900) {
+                    var lastHeight = $(".page-inner").children(":last-child").height(); //最后一个子级高度
+                    var lastMarginB = parseInt($(".page-inner").children(":last-child").css("margin-top"));
+                    var lHeight = $(".page-inner").height() - (lastHeight) - marginTop; //总高度减去最后一个高度
+                    // if (marginTop === 0) {
+                    lHeight += parseInt($(".page-inner").children(":first-child").css("margin-top"));
+                    // }
+                    var lastTag = $(".page-inner").children(":last-child")[0].tagName.toLowerCase();
+
+                    if (lastTag === "p") {
+                        if ((900 - lHeight) >= 36) {
+                            var lowerHeight = 900 - (900 - lHeight) % 36; //实际可视高度
+                            var lastClientHeight = lowerHeight - lHeight + lastMarginB; //最后一个可视高度 作为下一页的margin-top
+                        } else {
+                            var lowerHeight = 900 - (900 - lHeight);
+                            var lastClientHeight = 0;
+                            $(".page-inner").children(":last-child").remove();
+                            i--
+                        }
+                        $(".format-page").css("height", lowerHeight); //设置本页实际高度
+
+                    } else if (lastTag === "h2") {
+                        $(".page-inner").children(":last-child").remove();
+                        i--
+                    } else if (lastTag === "img") {
+                        $(".page-inner").children(":last-child").remove();
+                        i--
+                    } else if (lastTag === "h4") {
+                        $(".page-inner").children(":last-child").remove();
+                        i--
+                    }
+
+                    arr[m].length = i - arr[m].start + 1;
+                    //i--;
+                    arr[m].marginTop = marginTop;
+                    arr[m].height = lowerHeight;
+                    arr[m].lastClientHeight = lastClientHeight;
+                    $(".page-inner").css("margin-top", -lastClientHeight); //设置margin-top和清空height
+                    $(".format-page").css("height", "auto");
+                    $(".page-inner").html("");
+                    break;
+                } else {
+
+                }
+            }
+        }
+
+
+
+        //var fragment = new DocumentFragment();
+        //fragment.innerHTML=
+    </script>
+</body>
+
+</html>
