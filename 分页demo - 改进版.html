@@ -387,7 +387,8 @@
             num = Number(num);
             var obj = arr[num];
             for (var i = obj.start; i < obj.length + obj.start; i++) {
-                $(".page-inner").append($("#content h1,h2,h3,h4,p,img")[i].outerHTML);
+                //$(".page-inner").append($("#content h1,h2,h3,h4,p,img")[i].outerHTML);//后代选择器优先级高于并集选择器
+                $(".page-inner").append($("#content >*")[i].outerHTML);
             }
             $(".page-inner").css("margin-top", -obj.marginTop); //设置margin-top和清空height
             $(".format-page").css("height", obj.height);
