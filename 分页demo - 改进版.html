@@ -18,7 +18,11 @@
             line-height: 36px;
             font-size: 18px;
         }
-        
+        ul,ol{
+            margin: 23px;
+            line-height: 36px;
+            font-size: 18px;
+        }
         h1,
         h2,
         h3,
@@ -33,7 +37,7 @@
             margin-top: 50px;
             margin-bottom: 40px;
         }
-        
+        /*防止sub和sup标签影响p标签的行高*/
         sub,
         sup {
             font-size: 75%;
@@ -63,7 +67,7 @@
 
             </div> -->
             <div class="page-inner" style="margin-top:0px;width:100%;">
-
+            
             </div>
 
         </div>
@@ -88,184 +92,30 @@
                 }[m]
             }) : '';
         }
-        var cc = [`<h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `<p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>
-;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究<sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup>
-,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换<sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup>
-,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等<sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup>
-对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行<sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup>
-。</p>`, `<p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`, `<p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup>
-。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。</p>`, `<p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `<p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39" data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span>
-    <span
-        class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span><span class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span>
-        <span
-            class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34" data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span>
-            <span
-                class="s-p s-p-2 atom" data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span>
-                <span
-                    class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom" data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span>
-                    <span
-                        class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span>
-                        <span
-                            class="s-p s-p-2 atom" data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="132"
-                                data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span>
-                            </p>`, `
-                            <p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom"
-                                                    data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span>
-                                                <span
-                                                    class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span>
-                            </p>`, `
-                            <h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `
-                            <p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>                                ;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup> ,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup> ,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup> 对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup> 。
-                            </p>`, `
-                            <p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`,
-            `
-                            <p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup> 。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。
-                            </p>`, `
-                            <p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `
-                            <p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39"
-                                data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span>
-                            </p>`, `
-                            <p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom"
-                                                    data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span>
-                                                <span
-                                                    class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span>
-                            </p>`, `
-                            <h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `
-                            <p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>                                ;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup> ,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup> ,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup> 对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup> 。
-                            </p>`, `
-                            <p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`,
-            `
-                            <p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup> 。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。
-                            </p>`, `
-                            <p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `
-                            <p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39"
-                                data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span>
-                            </p>`, `
-                            <p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom"
-                                                    data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span>
-                                                <span
-                                                    class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span>
-                            </p>`, `
-                            <h3>3 4WID-4WIS车辆转向模式动态切换方法研究</h3>`, `
-                            <p id="284" anchor="">4WID-4WIS车辆具有多种转向模式。中国首辆“玉兔号”月球车采用的是“六轮独立驱动,四轮独立转向”的方案,具备前进、后退、原地转向等多种转向及运动模式,而模式切换是在停车后进行的,实践表明该结构方案在超低速情况下能适应月球表面复杂环境;香港中文大学徐扬生院士等人对4WIS车辆全方位转向控制策略与方法进行了较多研究,所研发的实验车配置了零半径转向、蟹行、前轮转向等多种转向模式,特别指出了转向模式切换需停车后完成<sup><a class="paper_mark" href="javascript:referr('#bibr63')" other="#bibr63">[32]</a></sup>                                ;同济大学研发出以轮毂电机为动力的春晖系统四驱电动汽车,并对全方位线控转向系统进行了研究
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr81')" other="#bibr81">[41]</a></sup> ,并在此基础上研发出一种全方位线控4WID-4WIS电动实验汽车,该车辆各车轮皆具180°的转弯能力且独立可控,4个车轮动力驱动采用4个轮毂电机且均可独立控制,具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向等6种转向与运动模式,在停车情况下可完成上述6种转向模式的相互切换
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr65')" other="#bibr65">[33]</a></sup> ,具有极强的机动性与可操纵性,具有广阔的应用前景与领域;哈尔滨工业大学FU等
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr83')" other="#bibr83">[42]</a></sup> 对可重构底盘进行了设计,定义了车辆的7种运动模式(如图2所示);美国爱荷华州立大学农业自动化与机器人实验室开发出具有远程控制、作物及土壤信息收集、喷雾、除草等功能的农业特种车辆AgRover,该车辆具有蟹行、前轮转向、后轮转向、零半径转向4种转向模式,转向模式切换需停车进行
-                                <sup><a class="paper_mark" href="javascript:referr('#bibr7')" other="#bibr7">[4]</a></sup> 。
-                            </p>`, `
-                            <p id="291" anchor="">综合国内外研究现状可知,4WID-4WIS车辆具有直行、蟹行、斜行、前轮转向、后轮转向、四轮转向、原地转向、差速转向等多种模式,但转向模式切换需在停车后完成,出现这种现状的主要原因是:目前应用广泛的科考车(如月球车)、车间物料车、农用多功能车、场馆车等4WID-4WIS车辆由于工作需要都是低速行驶的,对于低速或超低速行驶车辆,停车切换带来的影响不大;再者,4WID-4WIS车辆作为一种新型结构车辆,车辆功能的实现及合理的控制律的设计(目的是提高车辆的动力学、稳定性等性能)是研究人员首要关心的问题。然而,随着工程应用上对车辆行驶速度要求的提高,车辆所处环境也越来越复杂,以及4WID-4WIS车辆的实际道路行驶,停车切换将严重制约该车辆的行驶安全性、机动性及智能性:对于车辆高速化、车流密集化的道路交通现状而言,停车切换时间长,易造成追尾等严重交通事故;不停车切换车辆只能以单一的转向模式运行,不能发挥其高机动性与行驶稳定性特点。另外,停车切换不利于该车辆的智能化(如自动驾驶等)。因此,为了充分发挥4WID-4WIS车辆的优势,使该车辆适应目前的道路交通条件,提高该车辆的行驶安全性、机动性、智能性,对4WID-4WIS车辆的转向模式不停车动态切换展开研究,探索在不停车情况下转向模式动态切换原理与方法是非常必要且急需的。目前的一个研究热点是充分利用4WID-4WIS车辆冗余自由度,科学规划各车轮的运动轨迹,在各种优化目标下(如时间最优、能量最优等)求解车辆最优运动轨迹,对进一步拓展与促进该车辆的工程化应用及其真正道路化行驶具有重要意义。</p>`,
-            `
-                            <p id="292" anchor="">针对这个问题,笔者所在团队对转向模式的动态切换方法进行了初步研究<sup><a class="paper_mark" href="javascript:referr('#bibr85')" other="#bibr85">[43]</a></sup> 。研究思路是:通过对车辆瞬时转向中心进行建模,将各车轮的运动状态的规划问题转换成瞬时转向中心点在方位空间内的规划问题,然后根据瞬时转向中心的轨迹逆求解各车轮的运动轨迹。依据该思路实现了转向模式切换前后“保持转向半径不变”约束条件下的前/后轮转向模式不停车动态切换到四轮转向模式,实验结果如图3所示。由于增加了“转向半径不变”这个约束条件,直接求解前/后轮转向模式到四轮转向模式的唯一运动轨迹,没有涉及优化目标及最优运动轨迹求解、运动轨迹协调跟踪等问题,没有形成系统的建模及求解方法。
-                            </p>`, `
-                            <p id="295" anchor="">因此,该问题的研究难点及关键点在于:通过建立数学模型准确描述转向模式动态切换的过程,构建典型优化目标(如最短切换时间、最小能量消耗、最短切换路径)函数,并在运动学及动力学约束条件下分别对各种转向模式相互切换时的车辆/车轮的最优运动轨迹进行求解,阐述转向模式动态切换的原理及过程,建立一套系统的动态切换方法。</p>`, `
-                            <p class="p-b p-b-39 p-b-2-39" data-cn="2" data-paragraph-index="39"
-                                data-na-pn-index="39" data-rows-height="36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="9">在自我博弈的过程中</span><span class="s-p s-p-2 atom" data-paragraph-offset="9" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="10" data-part-len="10">如果自控系统能占上风</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">原始的本能能被你抛在一边</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="10">这听起来是不是很诱人</span><span class="s-p s-p-2 atom" data-paragraph-offset="44" data-part-len="1">？</span><span class="text atom" data-paragraph-offset="45" data-part-len="9">在茹毛饮血的时代里</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="54" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="55" data-part-len="11">这些本能使人类得以延续</span><span class="s-p s-p-2 atom" data-paragraph-offset="66" data-part-len="1">。</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="67" data-part-len="3">但如今</span><span class="s-p s-p-2 sh-l-2 atom" data-paragraph-offset="70" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="71" data-part-len="11">它们却阻碍了人类的发展</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="82" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="83" data-part-len="7">带来了健康问题</span><span class="s-p s-p-2 atom" data-paragraph-offset="90" data-part-len="1">，</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="91" data-part-len="7">掏空了银行账户</span><span class="s-p s-p-2 atom" data-paragraph-offset="98" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="99" data-part-len="16">酿成了需要向全国人民道歉的性丑闻</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="115" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="116" data-part-len="15">如果文明人能不再被原始冲动所累</span><span class="s-p s-p-2 atom" data-paragraph-offset="131" data-part-len="1">，</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="132" data-part-len="5">那该有多好</span><span class="s-p s-p-2 atom" data-paragraph-offset="137" data-part-len="1">。</span><span class="text"></span></span>
-                            </p>`, `
-                            <p class="p-b p-b-40 p-b-2-40" data-cn="2" data-paragraph-index="40" data-na-pn-index="40" data-rows-height="36|36|36|36|36|36"><span><span class="text atom" data-paragraph-offset="0" data-part-len="5">可别这么想</span><span class="s-p s-p-2 atom" data-paragraph-offset="5" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="6" data-part-len="14">虽然原始冲动并不总对我们有利</span>
-                                <span
-                                    class="s-p s-p-2 atom" data-paragraph-offset="20" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="21" data-part-len="12">但想彻底摆脱它也是不对的</span><span class="s-p s-p-2 atom" data-paragraph-offset="33" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="34"
-                                        data-part-len="19">医学上曾研究过因脑部受损而失去本能的人</span><span class="s-p s-p-2 atom" data-paragraph-offset="53" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="54" data-part-len="5">研究者发现</span><span class="s-p s-p-2 atom"
-                                        data-paragraph-offset="59" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="60" data-part-len="4">对于健康</span><span class="s-p s-p-2 atom" data-paragraph-offset="64" data-part-len="1">、</span>
-                                    <span
-                                        class="text atom" data-paragraph-offset="65" data-part-len="8">幸福和自控力来说</span><span class="s-p s-p-2 atom" data-paragraph-offset="73" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="74" data-part-len="12">原始的恐惧和欲望至关重要</span><span class="s-p s-p-2 atom"
-                                            data-paragraph-offset="86" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="87" data-part-len="8">有个案例很有意思</span><span class="s-p s-p-2 atom" data-paragraph-offset="95" data-part-len="1">：</span>
-                                        <span
-                                            class="text atom" data-paragraph-offset="96" data-part-len="17">一个年轻女子在癫痫手术中伤到了中脑</span><span class="s-p s-p-2 atom" data-paragraph-offset="113" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="114" data-part-len="10">无法感觉到恐惧和厌恶</span><span class="s-p s-p-2 atom"
-                                                data-paragraph-offset="124" data-part-len="1">。</span><span class="text atom" data-paragraph-offset="125" data-part-len="14">恐惧和厌恶正是两种自控的本能</span><span class="s-p s-p-2 atom" data-paragraph-offset="139" data-part-len="1">。</span>
-                                            <span
-                                                class="text atom" data-paragraph-offset="140" data-part-len="9">她养成了暴食的习惯</span><span class="s-p s-p-2 atom" data-paragraph-offset="149" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="150" data-part-len="10">非要把自己吃吐才罢休</span><span class="s-p s-p-2 atom"
-                                                    data-paragraph-offset="160" data-part-len="1">，</span><span class="text atom" data-paragraph-offset="161" data-part-len="12">而且经常对家人产生性冲动</span><span class="s-p s-p-2 atom" data-paragraph-offset="173" data-part-len="1">。</span>
-                                                <span
-                                                    class="text atom" data-paragraph-offset="174" data-part-len="12">这可不是个有自控力的典范</span><span class="s-p s-p-2 atom" data-paragraph-offset="186" data-part-len="1">！</span><span class="text"></span></span>
-                            </p>`
-        ]
+        
     </script>
     <script>
         // for (var j = 0; j < cc.length; j++) {
         //     $(".page-inner").append($(cc[j]));
         // }
         var content = `
-        <div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_1"><h1 class="Chapter"><div role="book" class="book"><strong role="strong" class="strong">知网群思</strong>;<strong role="strong" class="strong"> </strong>;<strong role="strong" class="strong">智汇天下</strong>;</div></h1><p role="para" class="para" data-id="" style="text-align: Center">——  一个极致激发群体智慧的知识创新管理系统</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_2"><h1 class="Chapter"><div role="book" class="book">引言</div></h1><p role="para" class="para" data-id="" style="">每当发现一个扑朔迷离的现象和问题，挑战一项难点纷繁的重要研究，或去攻克一个充满变局的战略目标，以何种方式组织一个团队或群体协同创新、统一思想、协调行动，将群体智慧发挥到极致，就成为决定成败之关键所在。</p><p role="para" class="para" data-id="" style="">无 论是线上线下的会议、通讯，还是微博、微信等交流方式，都不是实现这种高度协同效应的理想平台。这一难题的破解，需要在网上搭建一个具有自激功能的协同研 究和学习平台。在那里，可以很容易组建一个目标一致、能力互补的合作群体，随时随地交流，充分共享知识，自由碰撞思想，互激创新灵感，科学求证真理，及时 纠正错误，自觉统一认识，自动协调行动。就好像有一个把合作者大脑联结而成的云化“群体思维”系统，可以对“知识数据”进行高速的并行处理。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_3"><h1 class="Chapter"><div role="book" class="book">二、“知网群思”整体架构</div></h1><p role="para" class="para" data-id="" style="">“知网群思”，就是一个具有“群体思维”模式的群体协同研究与学习平台。既可在互联网上创建，也可安装在机构内部网上。其核心是对群体思维的知识管理，或称隐性知识管理，通过协同研讨平台、协同创作平台与成果管理系统实现；支撑着群体思维流畅运行的是知识服务平台，它通过各种途径获取国内外相关知识资源，对其进行恰当的选择、精细的加工、规范的梳理、系统的整合，或称显性知识管理，根据个性化的需要，特别是决策与执行的需要，及时地提供知识服务。平台的总体功能架构如下：</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_1"><h2 class="Chapter"><div role="book" class="book">1.条件平台</div></h2><p role="para" class="para" data-id="" style="">为协同研究与学习的组织者（平台用户，下简称用户）提供合作者人选和知识资源保障。</p><p role="para" class="para" data-id="" style="">①  专业人才库</p><p role="para" class="para" data-id="" style="">由“中国知网”的“全球专业人才库”、用户（组织机构和合作群体）自建的专业人才库构成，供用户选择和联络。</p><p role="para" class="para" data-id="" style="">②  知识信息系统</p><p role="para" class="para" data-id="" style="">支持用户自主创建特定知识结构的“知识资源库”，整合“中国知网”相应行业/专业的知识服务平台、搜索引擎提供的和用户自建的知识资源。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_2"><h2 class="Chapter"><div role="book" class="book">2.研讨平台</div></h2><p role="para" class="para" data-id="" style="">① 准备与分工</p><p role="para" class="para" data-id="" style="">支持课题创建、合作者准入、研究资料发布、研究目标分解、研究大纲和分工方案设定。</p><p role="para" class="para" data-id="" style="">② 协同调研</p><p role="para" class="para" data-id="" style="">合作者在研究大纲各级标题下，或在研究背景资料的任何文字片段上，标注讨论意见或提交调研资料；系统可在标注之处自动汇编所有意见与所交资料，供合作者进行整体浏览和逐条研究所有人的调研成果。</p><p role="para" class="para" data-id="" style="">③ 问题讨论</p><p role="para" class="para" data-id="" style="">基 于汇编的调研资料，合作者可进一步拟定具体问题分头研究。系统将按研究大纲和设定的问题自动汇编各人提交的阶段性研究成果（包括方法、过程、结果等），供 组织者（或任何合作者）进行整理、加工，发布后供大家进一步研究。以上过程可以逐次迭代，直至形成共同认可的研究结果。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_3"><h2 class="Chapter"><div role="book" class="book">3.协同编撰平台</div></h2><p role="para" class="para" data-id="" style="">合作者拟定最终研究成果的文稿形式（如研究报告、论文、专利、学习心得等），以及内容结构、术语定义、各部分关联关系、参考文献引证规范、写作风格等，分工进行起草。系统可对上述约定规范自动进行核较与汇编，汇编稿可以共同修改和审定。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_4"><h2 class="Chapter"><div role="book" class="book">4.过程记录系统</div></h2><p role="para" class="para" data-id="" style="">系统自助记录协同研究全过程，在汇编每一次研讨资料和成果文稿中，准确、完整链接所有合作者每次提交的意见与资料，如实记录和反映每个人的创新性工作贡献及其研究思路和方法。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_5"><h2 class="Chapter"><div role="book" class="book">5.成果管理与评价系统</div></h2><p role="para" class="para" data-id="" style="">按用户设定的知识结构，系统按自动对成果文档进行碎片化处理和结构化标引，存入用户“成果库”，由“知识管理员”设定版本编码、密级、保密期限与范围，进行长期保存和管理。</p><p role="para" class="para" data-id="" style="">成果发布后，系统自动采集受众的评价信息，其中公开发表后的被引与传播情况由“中国知网”提供。“知识管理员”可将评价信息反馈给合作者。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_6"><h2 class="Chapter"><div role="book" class="book">6.成果发布系统</div></h2><p role="para" class="para" data-id="" style="">经授权“知识管理员”从用户“成果库”中提出成果文档，确定发布途径（内部网、互联网、移动）、保密方式（下载、复制、保存、浏览、转发等）、研究过程公开范围，选择对象（合作者、上级领导、出版社投稿、申报中标等）发布研究成果。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_7"><h2 class="Chapter"><div role="book" class="book">7.知识服务平台</div></h2><p role="para" class="para" data-id="" style="">“知识管理员”依托用户“知识资源库”和“成果库”，按相关制度，对用户内部相关领导和干部员工提供各种问题的解决方案，并在服务过程中，自动记录、整理相关问题和意见，反馈到“成果管理与评价系统”。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_8"><h2 class="Chapter"><div role="book" class="book">8.个人知识整理系统</div></h2><p role="para" class="para" data-id="" style="">平台为合作者个人配置。可按授权连通用户的协同研究学习平台，接入“中国知网”，构建自己的知识资源库和个人资料库，还可连通互联网上的各种课题协同研究平台、全球学术期刊投稿平台等。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_4"><h1 class="Chapter"><div role="book" class="book">三、特点与优势</div></h1><p role="para" class="para" data-id="" style="">与一般社交网络不同，“知网群思”具有以下显著特点与功效。</p><p role="para" class="para" data-id="" style="">1、逐点汇编凝聚群体思维</p><p role="para" class="para" data-id="" style="">本平台中合作者可以随时看到并认真思考每个人对每一问题的不同见解，研究方式、方法、思维方式以及集体讨论形式的共识，在系统、碰撞过程中相互启发和学习，并可查询机构内外各种资料，随时随地基于集大成而创新知识。</p><p role="para" class="para" data-id="" style="">2、迭代研讨达成研学目标</p><p role="para" class="para" data-id="" style="">通过对合作者研究学习成果的多次迭代式汇编、整理、修改，以及协同创作发布成果，可以不断深化研究和学习内容，而达到研究学习目标。</p><p role="para" class="para" data-id="" style="">3、全程发布形成协同机制</p><p role="para" class="para" data-id="" style="">系统自动记录每个人的研究与学习贡献，特别是体现在最终发布的成果中，使每个人的价值得到合作者、机构及相关组织乃至全社会的认可，保证了参与合作的积极性、主动性。</p><p role="para" class="para" data-id="" style="">4、程可控保证信息安全</p><p role="para" class="para" data-id="" style="">系统在研讨、编撰、成果管理与发布、信息服务等各个环节均配置了权限管理，保证了在互联网和内部网上运行中的信息安全。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_5"><h1 class="Chapter"><div role="book" class="book">四、应用功效</div></h1><p role="para" class="para" data-id="" style="">1、协同研学提升创新能力</p><p role="para" class="para" data-id="" style="">利用平台，广聚人才，完善能力，集思广益，破解难题，是平台的基本功效。</p><p role="para" class="para" data-id="" style="">2、知识管理支撑工作管理</p><p role="para" class="para" data-id="" style="">平台基于协同研学的知识管理模式，通过沟通与创新，达成共识、提升能力，可为各类组织机构在决策及其执行过程中克服各级团队的领导力、执行力困惑，达到管理治本的效果。</p><p role="para" class="para" data-id="" style="">3、公开研讨监督团队职责</p><p role="para" class="para" data-id="" style="">​各类组织利用本平台，在内部或在社会上公开组织重大战略问题研究，团队各级干部如不尽责，将会受到内部、外部的监督。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_6"><h1 class="Chapter"><div role="book" class="book">五、用户类型</div></h1><p role="para" class="para" data-id="" style="">  平台在知识创新过程（隐性知识开发）、知识资源管理（显性知识管理）、知识服务方式等方面的通用性，可使其应用于各类组织机构。譬如：</p><p role="para" class="para" data-id="" style="">1、高校科研</p><p role="para" class="para" data-id="" style="">科研：面向院系与校内外、国内外，组织跨学科、跨界协同创新。</p><p role="para" class="para" data-id="" style="">教学：师生集体读书、探究学习，教学资料、学习笔记与心得共享，得以教学相长，促进学学相长，整体提高教学质量与合作能力。</p><p role="para" class="para" data-id="" style="">产学研用：面向产业科技创新需要，搭建以学校、院系、科研团队为主的协同研究平台。</p><p role="para" class="para" data-id="" style="">智囊：面向各级各类党政机关，构建智囊服务平台。</p><p role="para" class="para" data-id="" style="">2、新闻出版</p><p role="para" class="para" data-id="" style="">学术期刊：以选题策划、文献内容评价选择、编辑加工、规范内容管理、学术成果注册、文献传播等优势，构建社会化协同创新平台，实现公共知识生产、传播、扩散、利用、评价的一体化。</p><p role="para" class="para" data-id="" style="">图书出版：“知网书”编撰、“群学书”编辑。</p><p role="para" class="para" data-id="" style="">记编协同：选题策划，专题、系列报道协同采编，新闻跟踪。</p><p role="para" class="para" data-id="" style="">3、各类职教</p><p role="para" class="para" data-id="" style="">产学协教</p><p role="para" class="para" data-id="" style="">教材协编</p><p role="para" class="para" data-id="" style="">远程实习</p><p role="para" class="para" data-id="" style="">学习组织</p><p role="para" class="para" data-id="" style="">4、基础教育</p><p role="para" class="para" data-id="" style="">协同教研</p><p role="para" class="para" data-id="" style="">教学组织</p><p role="para" class="para" data-id="" style="">探究学习</p><p role="para" class="para" data-id="" style="">考试改革</p><p role="para" class="para" data-id="" style="">5、党政机关</p><p role="para" class="para" data-id="" style="">战略研究</p><p role="para" class="para" data-id="" style="">规划制定</p><p role="para" class="para" data-id="" style="">内部研讨</p><p role="para" class="para" data-id="" style="">政策调研</p><p role="para" class="para" data-id="" style="">项目攻关</p><p role="para" class="para" data-id="" style="">官民沟通</p><p role="para" class="para" data-id="" style="">6、民主党派</p><p role="para" class="para" data-id="" style="">议案调研：</p><p role="para" class="para" data-id="" style="">党政沟通</p><p role="para" class="para" data-id="" style="">政策研究</p><p role="para" class="para" data-id="" style="">组织学习</p><p role="para" class="para" data-id="" style="">7、学会协会</p><p role="para" class="para" data-id="" style="">规划调研</p><p role="para" class="para" data-id="" style="">会员沟通</p><p role="para" class="para" data-id="" style="">科技攻关</p><p role="para" class="para" data-id="" style="">科技推广</p><p role="para" class="para" data-id="" style="">社会宣传</p><p role="para" class="para" data-id="" style="">8、企业</p><p role="para" class="para" data-id="" style="">战略管理</p><p role="para" class="para" data-id="" style="">项目管理</p><p role="para" class="para" data-id="" style="">制度创新</p><p role="para" class="para" data-id="" style="">组织学习</p><p role="para" class="para" data-id="" style="">产学研协同</p><p role="para" class="para" data-id="" style="">客户沟通</p><p role="para" class="para" data-id="" style="">9、医院</p><p role="para" class="para" data-id="" style="">临床经验管理</p><p role="para" class="para" data-id="" style="">教学管理</p><p role="para" class="para" data-id="" style="">科研管理</p><p role="para" class="para" data-id="" style="">远程会诊</p><p role="para" class="para" data-id="" style="">医生监督</p><p role="para" class="para" data-id="" style="">10、司法机关</p><p role="para" class="para" data-id="" style="">案例研究</p><p role="para" class="para" data-id="" style="">案例挖掘</p><p role="para" class="para" data-id="" style="">普法教育</p><p role="para" class="para" data-id="" style="">协同办案 </p><p role="para" class="para" data-id="" style="">科研组织</p>
+        <div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_1"><h1 class="Chapter"><div role="book" class="book"><strong role="strong" class="strong">知网群思</strong>;<strong role="strong" class="strong"> </strong>;<strong role="strong" class="strong">智汇天下</strong>;</div></h1><p role="para" class="para" data-id="" style="text-align: Center">——  一个极致激发群体智慧的知识创新管理系统</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_2"><h1 class="Chapter"><div role="book" class="book">引言</div></h1><p role="para" class="para" data-id="" style="">每当发现一个扑朔迷离的现象和问题，挑战一项难点纷繁的重要研究，或去攻克一个充满变局的战略目标，以何种方式组织一个团队或群体协同创新、统一思想、协调行动，将群体智慧发挥到极致，就成为决定成败之关键所在。</p><p role="para" class="para" data-id="" style="">无 论是线上线下的会议、通讯，还是微博、微信等交流方式，都不是实现这种高度协同效应的理想平台。这一难题的破解，需要在网上搭建一个具有自激功能的协同研 究和学习平台。在那里，可以很容易组建一个目标一致、能力互补的合作群体，随时随地交流，充分共享知识，自由碰撞思想，互激创新灵感，科学求证真理，及时 纠正错误，自觉统一认识，自动协调行动。就好像有一个把合作者大脑联结而成的云化“群体思维”系统，可以对“知识数据”进行高速的并行处理。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_3"><h1 class="Chapter"><div role="book" class="book">二、“知网群思”整体架构</div></h1><p role="para" class="para" data-id="" style="">“知网群思”，就是一个具有“群体思维”模式的群体协同研究与学习平台。既可在互联网上创建，也可安装在机构内部网上。其核心是对群体思维的知识管理，或称隐性知识管理，通过协同研讨平台、协同创作平台与成果管理系统实现；支撑着群体思维流畅运行的是知识服务平台，它通过各种途径获取国内外相关知识资源，对其进行恰当的选择、精细的加工、规范的梳理、系统的整合，或称显性知识管理，根据个性化的需要，特别是决策与执行的需要，及时地提供知识服务。平台的总体功能架构如下：</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_1"><h2 class="Chapter"><div role="book" class="book">1.条件平台</div></h2><p role="para" class="para" data-id="" style="">为协同研究与学习的组织者（平台用户，下简称用户）提供合作者人选和知识资源保障。</p><p role="para" class="para" data-id="" style="">①  专业人才库</p><p role="para" class="para" data-id="" style="">由“中国知网”的“全球专业人才库”、用户（组织机构和合作群体）自建的专业人才库构成，供用户选择和联络。</p><p role="para" class="para" data-id="" style="">②  知识信息系统</p><p role="para" class="para" data-id="" style="">支持用户自主创建特定知识结构的“知识资源库”，整合“中国知网”相应行业/专业的知识服务平台、搜索引擎提供的和用户自建的知识资源。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_2"><h2 class="Chapter"><div role="book" class="book">2.研讨平台</div></h2><p role="para" class="para" data-id="" style="">① 准备与分工</p>
+<ul>
+                <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li>
+            </ul>
+            <ol>
+                <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li>
+            </ol>
+
+
+        <p role="para" class="para" data-id="" style="">支持课题创建、合作者准入、研究资料发布、研究目标分解、研究大纲和分工方案设定。</p><p role="para" class="para" data-id="" style="">② 协同调研</p><p role="para" class="para" data-id="" style="">合作者在研究大纲各级标题下，或在研究背景资料的任何文字片段上，标注讨论意见或提交调研资料；系统可在标注之处自动汇编所有意见与所交资料，供合作者进行整体浏览和逐条研究所有人的调研成果。</p><p role="para" class="para" data-id="" style="">③ 问题讨论</p><p role="para" class="para" data-id="" style="">基 于汇编的调研资料，合作者可进一步拟定具体问题分头研究。系统将按研究大纲和设定的问题自动汇编各人提交的阶段性研究成果（包括方法、过程、结果等），供 组织者（或任何合作者）进行整理、加工，发布后供大家进一步研究。以上过程可以逐次迭代，直至形成共同认可的研究结果。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_3"><h2 class="Chapter"><div role="book" class="book">3.协同编撰平台</div></h2><p role="para" class="para" data-id="" style="">合作者拟定最终研究成果的文稿形式（如研究报告、论文、专利、学习心得等），以及内容结构、术语定义、各部分关联关系、参考文献引证规范、写作风格等，分工进行起草。系统可对上述约定规范自动进行核较与汇编，汇编稿可以共同修改和审定。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_4"><h2 class="Chapter"><div role="book" class="book">4.过程记录系统</div></h2><p role="para" class="para" data-id="" style="">系统自助记录协同研究全过程，在汇编每一次研讨资料和成果文稿中，准确、完整链接所有合作者每次提交的意见与资料，如实记录和反映每个人的创新性工作贡献及其研究思路和方法。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_5"><h2 class="Chapter"><div role="book" class="book">5.成果管理与评价系统</div></h2><p role="para" class="para" data-id="" style="">按用户设定的知识结构，系统按自动对成果文档进行碎片化处理和结构化标引，存入用户“成果库”，由“知识管理员”设定版本编码、密级、保密期限与范围，进行长期保存和管理。</p><p role="para" class="para" data-id="" style="">成果发布后，系统自动采集受众的评价信息，其中公开发表后的被引与传播情况由“中国知网”提供。“知识管理员”可将评价信息反馈给合作者。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_6"><h2 class="Chapter"><div role="book" class="book">6.成果发布系统</div></h2><p role="para" class="para" data-id="" style="">经授权“知识管理员”从用户“成果库”中提出成果文档，确定发布途径（内部网、互联网、移动）、保密方式（下载、复制、保存、浏览、转发等）、研究过程公开范围，选择对象（合作者、上级领导、出版社投稿、申报中标等）发布研究成果。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_7"><h2 class="Chapter"><div role="book" class="book">7.知识服务平台</div></h2><p role="para" class="para" data-id="" style="">“知识管理员”依托用户“知识资源库”和“成果库”，按相关制度，对用户内部相关领导和干部员工提供各种问题的解决方案，并在服务过程中，自动记录、整理相关问题和意见，反馈到“成果管理与评价系统”。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h2_8"><h2 class="Chapter"><div role="book" class="book">8.个人知识整理系统</div></h2>
+<ul>
+                <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li>
+            </ul>
+            <ol>
+                <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li> <li>sdfsdfsdfsfrftyer</li>
+            </ol>
+        <p role="para" class="para" data-id="" style="">平台为合作者个人配置。可按授权连通用户的协同研究学习平台，接入“中国知网”，构建自己的知识资源库和个人资料库，还可连通互联网上的各种课题协同研究平台、全球学术期刊投稿平台等。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_4"><h1 class="Chapter"><div role="book" class="book">三、特点与优势</div></h1><p role="para" class="para" data-id="" style="">与一般社交网络不同，“知网群思”具有以下显著特点与功效。</p><p role="para" class="para" data-id="" style="">1、逐点汇编凝聚群体思维</p><p role="para" class="para" data-id="" style="">本平台中合作者可以随时看到并认真思考每个人对每一问题的不同见解，研究方式、方法、思维方式以及集体讨论形式的共识，在系统、碰撞过程中相互启发和学习，并可查询机构内外各种资料，随时随地基于集大成而创新知识。</p><p role="para" class="para" data-id="" style="">2、迭代研讨达成研学目标</p><p role="para" class="para" data-id="" style="">通过对合作者研究学习成果的多次迭代式汇编、整理、修改，以及协同创作发布成果，可以不断深化研究和学习内容，而达到研究学习目标。</p><p role="para" class="para" data-id="" style="">3、全程发布形成协同机制</p><p role="para" class="para" data-id="" style="">系统自动记录每个人的研究与学习贡献，特别是体现在最终发布的成果中，使每个人的价值得到合作者、机构及相关组织乃至全社会的认可，保证了参与合作的积极性、主动性。</p><p role="para" class="para" data-id="" style="">4、程可控保证信息安全</p><p role="para" class="para" data-id="" style="">系统在研讨、编撰、成果管理与发布、信息服务等各个环节均配置了权限管理，保证了在互联网和内部网上运行中的信息安全。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_5"><h1 class="Chapter"><div role="book" class="book">四、应用功效</div></h1><p role="para" class="para" data-id="" style="">1、协同研学提升创新能力</p><p role="para" class="para" data-id="" style="">利用平台，广聚人才，完善能力，集思广益，破解难题，是平台的基本功效。</p><p role="para" class="para" data-id="" style="">2、知识管理支撑工作管理</p><p role="para" class="para" data-id="" style="">平台基于协同研学的知识管理模式，通过沟通与创新，达成共识、提升能力，可为各类组织机构在决策及其执行过程中克服各级团队的领导力、执行力困惑，达到管理治本的效果。</p><p role="para" class="para" data-id="" style="">3、公开研讨监督团队职责</p><p role="para" class="para" data-id="" style="">​各类组织利用本平台，在内部或在社会上公开组织重大战略问题研究，团队各级干部如不尽责，将会受到内部、外部的监督。</p></div><div class="ChapterWrap" data-id="b8594629-aee9-4686-8a00-e08c9b0b0766_h1_6"><h1 class="Chapter"><div role="book" class="book">五、用户类型</div></h1><p role="para" class="para" data-id="" style="">  平台在知识创新过程（隐性知识开发）、知识资源管理（显性知识管理）、知识服务方式等方面的通用性，可使其应用于各类组织机构。譬如：</p><p role="para" class="para" data-id="" style="">1、高校科研</p><p role="para" class="para" data-id="" style="">科研：面向院系与校内外、国内外，组织跨学科、跨界协同创新。</p><p role="para" class="para" data-id="" style="">教学：师生集体读书、探究学习，教学资料、学习笔记与心得共享，得以教学相长，促进学学相长，整体提高教学质量与合作能力。</p><p role="para" class="para" data-id="" style="">产学研用：面向产业科技创新需要，搭建以学校、院系、科研团队为主的协同研究平台。</p><p role="para" class="para" data-id="" style="">智囊：面向各级各类党政机关，构建智囊服务平台。</p><p role="para" class="para" data-id="" style="">2、新闻出版</p><p role="para" class="para" data-id="" style="">学术期刊：以选题策划、文献内容评价选择、编辑加工、规范内容管理、学术成果注册、文献传播等优势，构建社会化协同创新平台，实现公共知识生产、传播、扩散、利用、评价的一体化。</p><p role="para" class="para" data-id="" style="">图书出版：“知网书”编撰、“群学书”编辑。</p><p role="para" class="para" data-id="" style="">记编协同：选题策划，专题、系列报道协同采编，新闻跟踪。</p><p role="para" class="para" data-id="" style="">3、各类职教</p><p role="para" class="para" data-id="" style="">产学协教</p><p role="para" class="para" data-id="" style="">教材协编</p><p role="para" class="para" data-id="" style="">远程实习</p><p role="para" class="para" data-id="" style="">学习组织</p><p role="para" class="para" data-id="" style="">4、基础教育</p><p role="para" class="para" data-id="" style="">协同教研</p><p role="para" class="para" data-id="" style="">教学组织</p><p role="para" class="para" data-id="" style="">探究学习</p><p role="para" class="para" data-id="" style="">考试改革</p><p role="para" class="para" data-id="" style="">5、党政机关</p><p role="para" class="para" data-id="" style="">战略研究</p><p role="para" class="para" data-id="" style="">规划制定</p><p role="para" class="para" data-id="" style="">内部研讨</p><p role="para" class="para" data-id="" style="">政策调研</p><p role="para" class="para" data-id="" style="">项目攻关</p><p role="para" class="para" data-id="" style="">官民沟通</p><p role="para" class="para" data-id="" style="">6、民主党派</p><p role="para" class="para" data-id="" style="">议案调研：</p><p role="para" class="para" data-id="" style="">党政沟通</p><p role="para" class="para" data-id="" style="">政策研究</p><p role="para" class="para" data-id="" style="">组织学习</p><p role="para" class="para" data-id="" style="">7、学会协会</p><p role="para" class="para" data-id="" style="">规划调研</p><p role="para" class="para" data-id="" style="">会员沟通</p><p role="para" class="para" data-id="" style="">科技攻关</p><p role="para" class="para" data-id="" style="">科技推广</p><p role="para" class="para" data-id="" style="">社会宣传</p><p role="para" class="para" data-id="" style="">8、企业</p><p role="para" class="para" data-id="" style="">战略管理</p><p role="para" class="para" data-id="" style="">项目管理</p><p role="para" class="para" data-id="" style="">制度创新</p><p role="para" class="para" data-id="" style="">组织学习</p><p role="para" class="para" data-id="" style="">产学研协同</p><p role="para" class="para" data-id="" style="">客户沟通</p><p role="para" class="para" data-id="" style="">9、医院</p><p role="para" class="para" data-id="" style="">临床经验管理</p><p role="para" class="para" data-id="" style="">教学管理</p><p role="para" class="para" data-id="" style="">科研管理</p><p role="para" class="para" data-id="" style="">远程会诊</p><p role="para" class="para" data-id="" style="">医生监督</p><p role="para" class="para" data-id="" style="">10、司法机关</p><p role="para" class="para" data-id="" style="">案例研究</p><p role="para" class="para" data-id="" style="">案例挖掘</p><p role="para" class="para" data-id="" style="">普法教育</p><p role="para" class="para" data-id="" style="">协同办案 </p><p role="para" class="para" data-id="" style="">科研组织</p>
         <p role="para" class="para" data-id="" style="">11、农业生产</p><p role="para" class="para" data-id="" style="">科技培训</p><p role="para" class="para" data-id="" style="">经营学习</p><p role="para" class="para" data-id="" style="">科产协同</p><p role="para" class="para" data-id="" style="">知识普及</p><p role="para" class="para" data-id="" style="" /></div>
         `;
         //var contentDiv = document.createElement("div")
@@ -280,33 +130,27 @@
         $("#content img").unwrap();
         $(".page-inner").html($("#content").html())
         var total = $("#content")[0].children.length;
+
         function getMargin(tag, dir) { //获取对应标签的margin值
             tag = tag.toLowerCase();
-            var tagTop = {
-                p: 23,
-                h1: 50,
-                h2: 50,
-                h3: 50
-            };
-            var tagBottom = {
-                p: 23,
-                h1: 40,
-                h2: 40,
-                h3: 40
-            }
+            var tagTop=Object.create(null),
+                tagBottom = Object.create(null),
+                obj = $("#content>"+tag)[0];
             if (dir === "top") {
-                return tagTop[tag]
+                return tagTop[tag] = parseInt(window.getComputedStyle(obj,null)['margin-top']);
             } else {
-                return tagBottom[tag]
+                return tagBottom[tag] = parseInt(window.getComputedStyle(obj,null)['margin-bottom']);
             }
         }
         var arr = []; //插入内容的起始位置;插入的内容的长度;margin-top;height; （内容高度范围，800px）段落起始索引
         var m = 0; //页码
         var lineHeightP = 36;
+        var lineHeightLi = 36;
         var i = 0; //段数
         var initMarginTop = 0; //每一页的marginTop
-        var pageHeightMax = 600;
+        var pageHeightMax = 600;//页面高度阈值，即每一页的实际可视区高度不超过该值
         var boxWidth = 700;
+        //var combineFirstMarginTop=0;//当前页margin-top与该页的第一个盒子的margin-top合并后的值
         $("#content").height(pageHeightMax).width(boxWidth);
         $("#format-pager-wrap").height(pageHeightMax).width(boxWidth);
         $(".format-page").height(pageHeightMax);
@@ -323,12 +167,12 @@
             }
             //var top = (firstMarginTop > marginTop ? firstMarginTop : marginTop)
             pageHeight += firstMarginTop;
-            var pageInitFlag = false;
+            var pageInitFlag = false;//每一页开始的标记，用来控制middleMargin的值
             var len1 = $(".page-inner")[0].children.length
             for (; i < len1; i++) {
                 var middleMargin = pageInitFlag ? Math.max(getMargin($(".page-inner").children()[i].tagName, "top"), getMargin($(".page-inner").children()[i - 1].tagName, "bottom")) : 0;//中间内容与内容之间合并过后的margin
                 pageHeight += ($(".page-inner").children().eq(i).height() + middleMargin)//累加页面高度（包括firstMarginTop）
-                if(m===15){console.log(i,$(".page-inner").children().eq(i).height(),pageHeight,$(".page-inner").children().eq(i).html())}
+                //if(m===15){console.log(i,$(".page-inner").children().eq(i).height(),pageHeight,$(".page-inner").children().eq(i).html())}
                 pageInitFlag = true;
 
                 if (pageHeight - marginTop - (marginTop > 0 ? firstMarginTop : 0) > pageHeightMax) {//在最后一页时不会走这里，需要特殊处理
@@ -338,34 +182,38 @@
                     var lastTag = $(".page-inner").children()[i].tagName.toLowerCase();
                     pageInitFlag = false;
                     var lowerHeight , lastClientHeight;
-                    if (lastTag === "p") {
-                        if ((pageHeightMax - lHeight) >= lineHeightP) {
-                             lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
-                             lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
-                        } else {
-                            lastClientHeight = 0;
-                            pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                            lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
-                        }
-                    } else if (lastTag === "h2" || lastTag === "h1") {
+                    function strategyHOrImg(){
                         var lastClientHeight = 0;
                         pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
                         lowerHeight = lHeight - middleMargin 
-                    } else if (lastTag === "img") {
-                        var lastClientHeight = 0;
-                        pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                        lowerHeight = lHeight - middleMargin
-                    } else if (lastTag === "h4" || lastTag === "h3") {
-                        var lastClientHeight = 0;
-                        pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                        lowerHeight = lHeight - middleMargin;
                     }
-
+                    function strategyPOrLi(lineHeightP){
+                             if ((pageHeightMax - lHeight) >= lineHeightP) {//当前页最后一段至少显示一行
+                             lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
+                             lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
+                            } else {//当前页最后一段不显示
+                                lastClientHeight = 0;
+                                pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
+                                lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
+                            }
+                    }
+                    var strategy = {//策略对象
+                        "p":strategyPOrLi.bind(null,lineHeightP),
+                        "ul":strategyPOrLi.bind(null,lineHeightLi) ,
+                        "ol":strategyPOrLi.bind(null,lineHeightLi) ,
+                        "h1":strategyHOrImg,
+                        "h2":strategyHOrImg,
+                        "h3":strategyHOrImg,
+                        "h4":strategyHOrImg,
+                        "img":strategyHOrImg
+                    }
+                    strategy[lastTag]();
+                    //设置当前页的参数
                     arr[m].length = i - arr[m].start + 1; //每页包含的段数
                     arr[m].marginTop = marginTop + (marginTop ? firstMarginTop : 0); //margin-top
                     arr[m].height = lowerHeight;
                     arr[m].lastClientHeight = lastClientHeight;
-                    //render(m);
+                    //render(m);//调试用
                     break;
                 }
             }
@@ -382,7 +230,7 @@
             var obj = arr[num];
             for (var i = obj.start; i < obj.length + obj.start; i++) {
                 //$(".page-inner").append($("#content h1,h2,h3,h4,p,img")[i].outerHTML);//后代选择器优先级高于并集选择器
-                $(".page-inner").append($("#content >*")[i].outerHTML);
+                $(".page-inner").append($("#content").children()[i].outerHTML);
             }
             $(".page-inner").css("margin-top", -obj.marginTop); //设置margin-top和清空height
             $(".format-page").css("height", obj.height);
