@@ -279,7 +279,7 @@
         $("#content").html(str);
         $("#content img").unwrap();
         $(".page-inner").html($("#content").html())
-
+        var total = $("#content")[0].children.length;
         function getMargin(tag, dir) { //获取对应标签的margin值
             tag = tag.toLowerCase();
             var tagTop = {
@@ -310,74 +310,68 @@
         $("#content").height(pageHeightMax).width(boxWidth);
         $("#format-pager-wrap").height(pageHeightMax).width(boxWidth);
         $(".format-page").height(pageHeightMax);
-    //     id="content" style="position:absolute;left:-50000px;top:-20000px;height:900px;width:850px;overflow:hidden;"></div>
-    // <div class="wrap" id="format-pager-wrap" style="height:900px;width:850px;background:pink;overflow:hidden;">
-    //     <!-- format-pager控制下面的不可见位置 height可变 -->
-    //     <div class="format-page" style="
-        for (var m = 0; m < 28; m++) {
+
+        for (var m = 0;; m++) {
             arr[m] = {};
             arr[m].start = i;
-            var marginTop = m === 0 ? initMarginTop : arr[m - 1].lastClientHeight;
+            var marginTop = m === 0 ? initMarginTop : arr[m - 1].lastClientHeight;//每一页的外层盒子的初始marginTop
             var pageHeight = 0; //页面可视高度
             try {
-                var firstMarginTop = getMargin($(".page-inner").children()[i].tagName, "top");
+                var firstMarginTop = getMargin($("#content").children()[i].tagName, "top");
             } catch (e) {
-                m--;
                 break;
-
             }
             //var top = (firstMarginTop > marginTop ? firstMarginTop : marginTop)
             pageHeight += firstMarginTop;
             var pageInitFlag = false;
-            for (; i < $(".page-inner")[0].children.length; i++) {
-                var middleMargin = pageInitFlag ? Math.max(getMargin($(".page-inner").children()[i].tagName, "top"), getMargin($(".page-inner").children()[i - 1].tagName, "bottom")) : 0;
-                pageHeight += ($(".page-inner").children().eq(i).height() + middleMargin)
+            var len1 = $(".page-inner")[0].children.length
+            for (; i < len1; i++) {
+                var middleMargin = pageInitFlag ? Math.max(getMargin($(".page-inner").children()[i].tagName, "top"), getMargin($(".page-inner").children()[i - 1].tagName, "bottom")) : 0;//中间内容与内容之间合并过后的margin
+                pageHeight += ($(".page-inner").children().eq(i).height() + middleMargin)//累加页面高度（包括firstMarginTop）
+                if(m===15){console.log(i,$(".page-inner").children().eq(i).height(),pageHeight,$(".page-inner").children().eq(i).html())}
                 pageInitFlag = true;
 
-                if (pageHeight - marginTop - (marginTop > 0 ? firstMarginTop : 0) > pageHeightMax) {
+                if (pageHeight - marginTop - (marginTop > 0 ? firstMarginTop : 0) > pageHeightMax) {//在最后一页时不会走这里，需要特殊处理
                     var lastHeight = $(".page-inner").children().eq(i).height(); //最后一个子级高度
-                    var lastMarginT = getMargin($(".page-inner").children()[i].tagName, "top");
+                    var lastMarginT = getMargin($(".page-inner").children()[i].tagName, "top");//最后一个子级的margin-top
                     var lHeight = pageHeight - lastHeight - marginTop - (marginTop > 0 ? firstMarginTop : 0); //总高度减去最后一个高度后的可视高度(包括最后一个子集与倒数第二个子集的合并过后的margin)
                     var lastTag = $(".page-inner").children()[i].tagName.toLowerCase();
                     pageInitFlag = false;
+                    var lowerHeight , lastClientHeight;
                     if (lastTag === "p") {
                         if ((pageHeightMax - lHeight) >= lineHeightP) {
-                            var lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
-                            var lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
-
+                             lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
+                             lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
                         } else {
-
-                            var lastClientHeight = 0;
+                            lastClientHeight = 0;
                             pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                            var lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
-                                // i--;
+                            lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
                         }
                     } else if (lastTag === "h2" || lastTag === "h1") {
                         var lastClientHeight = 0;
                         pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                        var lowerHeight = lHeight - middleMargin
-                            // i--;
+                        lowerHeight = lHeight - middleMargin 
                     } else if (lastTag === "img") {
                         var lastClientHeight = 0;
                         pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                        var lowerHeight = lHeight - middleMargin
-                            //i--;
+                        lowerHeight = lHeight - middleMargin
                     } else if (lastTag === "h4" || lastTag === "h3") {
                         var lastClientHeight = 0;
                         pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                        var lowerHeight = lHeight - middleMargin
-                            //i--;
+                        lowerHeight = lHeight - middleMargin;
                     }
 
                     arr[m].length = i - arr[m].start + 1; //每页包含的段数
-                    arr[m].marginTop = marginTop + (marginTop ? lastMarginT : 0); //margin-top
+                    arr[m].marginTop = marginTop + (marginTop ? firstMarginTop : 0); //margin-top
                     arr[m].height = lowerHeight;
                     arr[m].lastClientHeight = lastClientHeight;
                     //render(m);
                     break;
-                } else {
-
                 }
+            }
+            if(i === len1){//处理最后一页
+                arr[m].length = i - arr[m].start ; //每页包含的段数
+                arr[m].marginTop = marginTop + (marginTop ? firstMarginTop : 0); //margin-top
             }
         }
 
