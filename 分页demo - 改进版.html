@@ -144,8 +144,8 @@
         }
         var arr = []; //插入内容的起始位置;插入的内容的长度;margin-top;height; （内容高度范围，800px）段落起始索引
         var m = 0; //页码
-        var lineHeightP = 36;
-        var lineHeightLi = 36;
+        var lineHeightP = parseInt(window.getComputedStyle($("#content>p")[0],null)["line-height"]);
+        var lineHeightLi = parseInt(window.getComputedStyle($("#content>ol")[0],null)["line-height"]);
         var i = 0; //段数
         var initMarginTop = 0; //每一页的marginTop
         var pageHeightMax = 600;//页面高度阈值，即每一页的实际可视区高度不超过该值
@@ -189,8 +189,8 @@
                     }
                     function strategyPOrLi(lineHeightP){
                              if ((pageHeightMax - lHeight) >= lineHeightP) {//当前页最后一段至少显示一行
-                             lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
-                             lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
+                                 lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
+                                 lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
                             } else {//当前页最后一段不显示
                                 lastClientHeight = 0;
                                 pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
@@ -230,7 +230,7 @@
             var obj = arr[num];
             for (var i = obj.start; i < obj.length + obj.start; i++) {
                 //$(".page-inner").append($("#content h1,h2,h3,h4,p,img")[i].outerHTML);//后代选择器优先级高于并集选择器
-                $(".page-inner").append($("#content").children()[i].outerHTML);
+                $(".page-inner").append($("#content")[0].children[i].outerHTML);
             }
             $(".page-inner").css("margin-top", -obj.marginTop); //设置margin-top和清空height
             $(".format-page").css("height", obj.height);
@@ -273,7 +273,11 @@
             render(currentPage - 1)
             refreshPageNum();
         })
-
+        document.onkeydown = function(e){
+            if(e.keyCode===13 && document.activeElement.id==="num"){
+                $("#returnPage").click();
+            }
+        }
         function refreshPageNum() {
             var str1 = currentPage + "/" + totalPage;
             $("#page").html(str1)
