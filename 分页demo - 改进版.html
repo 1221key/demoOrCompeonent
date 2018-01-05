@@ -144,8 +144,9 @@
         }
         var arr = []; //插入内容的起始位置;插入的内容的长度;margin-top;height; （内容高度范围，800px）段落起始索引
         var m = 0; //页码
-        var lineHeightP = parseInt(window.getComputedStyle($("#content>p")[0],null)["line-height"]);
-        var lineHeightLi = parseInt(window.getComputedStyle($("#content>ol")[0],null)["line-height"]);
+        var contentTagP = $("#content>p")[0],contentTagLi = $("#content>ol")[0];
+        var lineHeightP = contentTagP ? parseInt(window.getComputedStyle(contentTagP,null)["line-height"]) : 0;
+        var lineHeightLi = contentTagLi ? parseInt(window.getComputedStyle(contentTagLi,null)["line-height"]) : 0;
         var i = 0; //段数
         var initMarginTop = 0; //每一页的marginTop
         var pageHeightMax = 600;//页面高度阈值，即每一页的实际可视区高度不超过该值
@@ -168,7 +169,7 @@
             //var top = (firstMarginTop > marginTop ? firstMarginTop : marginTop)
             pageHeight += firstMarginTop;
             var pageInitFlag = false;//每一页开始的标记，用来控制middleMargin的值
-            var len1 = $(".page-inner")[0].children.length
+            var len1 = $(".page-inner")[0].children.length;
             for (; i < len1; i++) {
                 var middleMargin = pageInitFlag ? Math.max(getMargin($(".page-inner").children()[i].tagName, "top"), getMargin($(".page-inner").children()[i - 1].tagName, "bottom")) : 0;//中间内容与内容之间合并过后的margin
                 pageHeight += ($(".page-inner").children().eq(i).height() + middleMargin)//累加页面高度（包括firstMarginTop）
