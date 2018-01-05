@@ -150,7 +150,7 @@
         var i = 0; //段数
         var initMarginTop = 0; //每一页的marginTop
         var pageHeightMax = 600;//页面高度阈值，即每一页的实际可视区高度不超过该值
-        var boxWidth = 700;
+        var boxWidth = 700;//页面中间内容展示宽度
         //var combineFirstMarginTop=0;//当前页margin-top与该页的第一个盒子的margin-top合并后的值
         $("#content").height(pageHeightMax).width(boxWidth);
         $("#format-pager-wrap").height(pageHeightMax).width(boxWidth);
@@ -172,6 +172,21 @@
             var len1 = $(".page-inner")[0].children.length;
             for (; i < len1; i++) {
                 var middleMargin = pageInitFlag ? Math.max(getMargin($(".page-inner").children()[i].tagName, "top"), getMargin($(".page-inner").children()[i - 1].tagName, "bottom")) : 0;//中间内容与内容之间合并过后的margin
+                //若图片宽或者高超过了页面宽高，则重新设置
+                var imgTag =$(".page-inner").children()[i];
+                    if(imgTag.tagName.toLowerCase()==="img" && parseInt(imgTag.getAttribute("width"))>boxWidth){
+                        var ratioWidth = parseInt(imgTag.getAttribute("width"))/boxWidth,
+                            ratioHeight = parseInt(imgTag.getAttribute("height"))/pageHeightMax;
+                        if(ratioWidth>ratioHeight){
+                            imgTag.setAttribute("width",boxWidth);
+                            imgTag.setAttribute("height",parseInt(imgTag.getAttribute("height"))/ratioWidth);
+                        }else{
+                            imgTag.setAttribute("width",parseInt(imgTag.getAttribute("width"))/ratioHeight);
+                            imgTag.setAttribute("height",pageHeightMax);
+                        }
+                        //console.log($(".page-inner").children().eq(i).height() ,middleMargin)
+                    }
+
                 pageHeight += ($(".page-inner").children().eq(i).height() + middleMargin)//累加页面高度（包括firstMarginTop）
                 //if(m===15){console.log(i,$(".page-inner").children().eq(i).height(),pageHeight,$(".page-inner").children().eq(i).html())}
                 pageInitFlag = true;
@@ -189,14 +204,14 @@
                         lowerHeight = lHeight - middleMargin 
                     }
                     function strategyPOrLi(lineHeightP){
-                             if ((pageHeightMax - lHeight) >= lineHeightP) {//当前页最后一段至少显示一行
-                                 lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
-                                 lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
-                            } else {//当前页最后一段不显示
-                                lastClientHeight = 0;
-                                pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
-                                lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
-                            }
+                         if ((pageHeightMax - lHeight) >= lineHeightP) {//当前页最后一段至少显示一行
+                             lowerHeight = pageHeightMax - (pageHeightMax - lHeight) % lineHeightP; //实际可视高度
+                             lastClientHeight = lowerHeight - lHeight; //最后一个可视高度 作为下一页的margin-top   (((pageHeightMax - lHeight) / lineHeightP) | 0) * lineHeightP
+                        } else {//当前页最后一段不显示
+                            lastClientHeight = 0;
+                            pageHeight -= ($(".page-inner").children().eq(i).height() + middleMargin + marginTop + (marginTop > 0 ? firstMarginTop : 0));
+                            lowerHeight = lHeight - middleMargin //pageHeightMax - (pageHeightMax - lHeight);
+                        }
                     }
                     var strategy = {//策略对象
                         "p":strategyPOrLi.bind(null,lineHeightP),
